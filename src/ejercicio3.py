@@ -24,23 +24,30 @@ def comprobar_stock(fruta_deseada:str)->bool:
     if fruta_deseada in frutas_disponibles.keys():
         return True
 
-def calcular_precio(kilos_solicitados:int,precio_por_kilo:float)->float:
+def calcular_precio(kilos_solicitados:int,fruta_deseada:str)->float:
+    precios_por_kilo = {"Plátano":1.35,"Manzana":0.80,"Pera":0.85,"Naranja":0.70}
+    precio_por_kilo = precios_por_kilo[fruta_deseada]
     return kilos_solicitados * precio_por_kilo
 
 #Salida
     
-def mostrar_precio(queda_stock:bool,precio_kilos:float)->str:
+def mostrar_precio(precio_kilos:float)->str:
     if queda_stock:
         return f"El precio de los kilos solicitados es de {precio_kilos}"
-    else:
-        return "Lo siento no queda stock de esa fruta"
+    
+def mostrar_falta_stock()->str:
+    return "No nos queda stock de esa fruta"
 
 if __name__ == "__main__":
-    #Entrada
+
     fruta_deseada = solicitar_fruta()
     kilos_deseados = solicitar_kilos()
-    #Procesado
-    queda_stock = comprobar_stock()
-    #TODO Planteate todo esto mañana mejor corazón
-    #Salida
-    print(fruta_deseada)
+    queda_stock = comprobar_stock(fruta_deseada)
+    
+    if queda_stock:
+        precio_kilos = calcular_precio(kilos_deseados,fruta_deseada)
+        mensaje_precio = mostrar_precio(precio_kilos)
+        print(mensaje_precio)
+    else:
+        mensaje_no_stock = mostrar_falta_stock()
+        print(mensaje_no_stock)
