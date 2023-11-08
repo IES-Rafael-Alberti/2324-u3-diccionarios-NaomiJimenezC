@@ -32,8 +32,7 @@ def calcular_precio(kilos_solicitados:int,fruta_deseada:str)->float:
 #Salida
     
 def mostrar_precio(precio_kilos:float)->str:
-    if queda_stock:
-        return f"El precio de los kilos solicitados es de {precio_kilos}"
+    return f"El precio de los kilos solicitados es de {precio_kilos}"
     
 def mostrar_falta_stock()->str:
     return "No nos queda stock de esa fruta"
