@@ -38,10 +38,37 @@ def introducir_info_personal(campo:str)->str:
     return informacion_introducida
 
 #Procesado
+
+
+
+def anadir_info_personal(contacto:dict,campo:str,info_del_campo:str):
+    """Actualiza la información de un diccionario con un campo y su respectiva info
+
+    Parameters
+    ----------
+    contacto:dict
+        Diccionario que contiene toda la información personal de la persona
+    campo : str
+        Tema del que se quiere añadir información
+    info_del_campo : str
+        Información del campo
+    """
+    contacto.update({campo:info_del_campo})
+
 #Salida
+def mostrar_contenido_del_contacto(info_contacto:dict)->str:
+    return f"Los campos del contacto son: \n {info_contacto}"
 
 if __name__ == "__main__":
     #Entrada
+    contacto_nuevo = {}
+    campo_a_querer_anadir = introducir_campo_de_informacion_persona()
+    info_del_campo = introducir_info_personal(campo_a_querer_anadir)
+    
     #Procesado
-    #Salida
-    print()
+    seguir_anadiendo_info = True
+    while seguir_anadiendo_info:
+        anadir_info_personal(contacto_nuevo,campo_a_querer_anadir,info_del_campo)
+        contenido_actual_contacto = mostrar_contenido_del_contacto(contacto_nuevo)
+        print(contenido_actual_contacto)        
+    
